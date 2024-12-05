@@ -1,4 +1,5 @@
 from http.server import BaseHTTPRequestHandler, HTTPServer
+import socket
 
 class MyHandler(BaseHTTPRequestHandler):
     def do_GET(self):
@@ -16,6 +17,7 @@ class MyHandler(BaseHTTPRequestHandler):
         self.wfile.write(b"Hello, POST request received!")
 
 if __name__ == "__main__":
-    server = HTTPServer(("0.0.0.0", 8000), MyHandler)
-    print("Server running...")
+    host_name = socket.gethostbyname(socket.gethostname())
+    server = HTTPServer((host_name, 8000), MyHandler)
+    print(f"Server running at http://{host_name}:8000/")
     server.serve_forever()
