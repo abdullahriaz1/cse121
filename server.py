@@ -14,11 +14,16 @@ class SimpleHTTPRequestHandler(BaseHTTPRequestHandler):
         # Read the body of the request
         post_data = self.rfile.read(content_length)
 
+        # Log the received data
+        print("Received POST data:", post_data.decode())
+
         # Process the data (assuming JSON for this example)
         try:
             data = json.loads(post_data)
+            print("Parsed JSON:", json.dumps(data, indent=4))  # Pretty print received JSON
             response = {"status": "success", "received": data}
         except json.JSONDecodeError:
+            print("Error: Invalid JSON")
             response = {"status": "error", "message": "Invalid JSON"}
 
         # Send a response
