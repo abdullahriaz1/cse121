@@ -54,7 +54,7 @@ class SimpleHTTPRequestHandler(BaseHTTPRequestHandler):
         self.wfile.write(json.dumps(response).encode())
 
 if __name__ == "__main__":
-    server_address = ('', 8000)  # Serve on all interfaces at port 8000
+    server_address = ('', 1234)  # Serve on all interfaces at port 8000
     httpd = HTTPServer(server_address, SimpleHTTPRequestHandler)
-    print("Server running on port 8000...")
+    print("Server running on port 1234...")
     httpd.serve_forever()
